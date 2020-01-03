@@ -1,4 +1,5 @@
 let flag=0;
+let count = 0;
 let value=[[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
 document.querySelector('table').onclick = (event) => {
     let cell = event.target;
@@ -14,13 +15,16 @@ function paint(i,j){
    let id = ""+i+j;
    let el = document.getElementById(id);
     if ((value[i][j]==-1)){
+        count +=1; 
         if (flag==0){
            el.innerHTML="x" ;
-         
+           
             value[i][j]=1;
             flag+=1;
             if (checkWin()){
                 alert ("WIN X"); 
+                clean();
+                return;
             }   
         }
         else{
@@ -29,10 +33,27 @@ function paint(i,j){
             flag-=1;
             if (checkWin()){
                 alert ("WIN 0"); 
+                clean();
+                return;
             }
         }
+        if (count==9){
+        alert ("NOBODY WIN OR EVERYONE WIN. FIGHT");
+        clean();
+        return;
+        }
+
     }      
 }
+function clean(){
+    let fields = '00,01,02,10,11,12,20,21,22'.split(',');
+    for(i = 0; i < fields.length; i ++)
+    document.getElementById(fields[i]).innerHTML = '-';
+    flag=0;
+    value=[[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
+    count = 0;
+}
+
 function checkWin(){
     if (diagWin()||horizWin()||vertWin())
         return true
