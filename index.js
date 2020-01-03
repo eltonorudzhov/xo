@@ -1,6 +1,9 @@
+//import {updTabl} from './gamestate.js'
+
 let flag=0;
 let count = 0;
 let value=[[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
+
 document.querySelector('table').onclick = (event) => {
     let cell = event.target;
     if (cell.tagName.toLowerCase() != 'td')
@@ -23,6 +26,7 @@ function paint(i,j){
             flag+=1;
             if (checkWin()){
                 alert ("WIN X"); 
+                updTabl(1)
                 clean();
                 return;
             }   
@@ -33,6 +37,7 @@ function paint(i,j){
             flag-=1;
             if (checkWin()){
                 alert ("WIN 0"); 
+                updTabl(2)
                 clean();
                 return;
             }
@@ -114,4 +119,11 @@ function horizWin(){
         }
     }
     return false
+}
+
+function updTabl(win){
+    if (win==1)
+    document.getElementById('first').innerHTML= +first.textContent+1;
+    else
+    document.getElementById('second').innerHTML= +secont.textContent+1;
 }
