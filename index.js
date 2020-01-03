@@ -2,7 +2,6 @@ let flag=0;
 let value=[[-1,-1,-1],[-1,-1,-1],[-1,-1,-1]]
 document.querySelector('table').onclick = (event) => {
     let cell = event.target;
-    
     if (cell.tagName.toLowerCase() != 'td')
       return;
     let i = cell.parentNode.rowIndex;
@@ -12,20 +11,20 @@ document.querySelector('table').onclick = (event) => {
 }
 
 function paint(i,j){
-    id = ""+i+j;
-    let el = document.getElementById(id);
+   let id = ""+i+j;
+   let el = document.getElementById(id);
     if ((value[i][j]==-1)){
         if (flag==0){
-           el.outerHTML='<td id='+id+'>x</td>' ;
+           el.innerHTML="x" ;
+         
             value[i][j]=1;
             flag+=1;
             if (checkWin()){
                 alert ("WIN X"); 
-            }
-            
+            }   
         }
         else{
-            el.outerHTML='<td id='+id+'>0</td>' ;
+            el.innerHTML="0" ;
             value[i][j]=0;
             flag-=1;
             if (checkWin()){
@@ -34,24 +33,64 @@ function paint(i,j){
         }
     }      
 }
-
 function checkWin(){
-    let flg=0;
-    // проверка 
-    for (let i=0; i<3; i++){
-        if (value[i][0]!=-1){
-            for (let j=1; j<3; j++){
-                if (value[i][j-1]!=value[i][j]){
-                    continue;
+    if (diagWin()||horizWin()||vertWin())
+        return true
+    else
+        return false
+}
+function diagWin(){
+    let flg1=1;
+    let flg2=1;
+    if (value[1][1]==-1)
+        return false
+    for (let i=1; i<3; i++){
+        
+        if (value[i][i]!=value[i-1][i-1])
+            flg1=0;
+        
+        if (value[i][2-i]!=value[i-1][3-i])
+            flg2=0;
+    }
+    if ((flg1==1)||(flg2==1))
+        return true
+    else
+        return false
+    
+}
+function vertWin(){
+    // проверка по вертикали
+    for (let j=0; j<3; j++){
+        if (value[0][j]!=-1){
+            for (let i=1; i<3; i++){
+                if (value[i-1][j]!=value[i][j]){
+                    break;
                 }
-                if (j==2){     
-                    flg=1;
+                console.log("index"+i+j)
+                if (i==2){     
+                    return true;
                 }
             }
         }
     }
-    if (flg==1)
-        return true
-    else
-        return false
+
+    return false
+}
+
+function horizWin(){
+    // проверка по горизонтали
+    for (let i=0; i<3; i++){
+        if (value[i][0]!=-1){
+            for (let j=1; j<3; j++){
+                if (value[i][j-1]!=value[i][j]){
+                    break;
+                }
+                console.log("index"+i+j)
+                if (j==2){     
+                    return true;
+                }
+            }
+        }
+    }
+    return false
 }
