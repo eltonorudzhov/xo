@@ -1,4 +1,4 @@
 import { S } from './index.js';
-//import S from './index.js'
-//console.log("ss")
+console.log("SR")
+alert("DS")
 S.start()

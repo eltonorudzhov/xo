@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+            <meta http-equiv="content-type" content="text/html; charset=windows-1251" />
     <link rel="stylesheet" type="text/css" href="index.css" />
-   
+    
+    <script type="module" src="bundle.js"></script>
+    <script type="module" src="index.js"></script>
+    <script type="module" src="inf.js"></script>
+    <script type="module" src="gamestate.js"></script>
+    <script type="module" src="checkwin.js"></script>
+    <script type="module" src="clean.js"></script>
+    <script type="module" src="paint.js"></script>
     </head>
 
     <body id="body">
+        
          <div>
             <table>
                 <tr>
@@ -27,9 +36,9 @@
          </div>
          <div>
              <table>
-                    <caption>Статистика игры</caption>
+                    <caption>Game state</caption>
                 <tr>
-                    <th>Х</th>
+                    <th>X</th>
                     <th>0</th>
                 </tr> 
                 <tr>
@@ -38,6 +47,4 @@
                 </tr>
          </div>
     </body>
-    <script src="index.js"></script>
-    
 </html>

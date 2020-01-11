@@ -1,7 +1,7 @@
 import {paint} from './paint'
-
 class S{
-    start(){
+  start(){
+    alert("DD")
     document.querySelector('table').onclick = (event) => {
     let cell = event.target;
     if (cell.tagName.toLowerCase() != 'td')
@@ -11,7 +11,7 @@ class S{
     paint(i,j);
     console.log(i, j);
     }
-    }
+  }
 }
 export default new S();
 
